@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex main.idx"] 1794237764.84456 "main.idx" "main.ind" "main" 1794237766.23963 0
-  "main.idx" 1794237765.48908 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex main.idx"] 1794237764.84456 "main.idx" "main.ind" "main" 1794493034.71368 0
+  "main.idx" 1794493034.11209 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
   (rewritten before read)
-["pdflatex"] 1794237764.86373 "main.tex" "main.pdf" "main" 1794237766.23982 0
+["pdflatex"] 1794493033.46655 "main.tex" "main.pdf" "main" 1794493034.71381 0
   "/etc/texmf/web2c/texmf.cnf" 1794189853.70537 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -301,21 +301,20 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1769369718 41603 27f93b3067076450172040dcd57ca8b3 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1794191520 165211 6b08d096f3d0fe5ff6b266061a2b45e0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1794191539 2265710 de29c83b047257e854c36985b8793391 ""
-  "chapters/cbse-2012.tex" 1794212656 29481 3d570cc44490e69a9c5a9344c54ae47f ""
-  "chapters/cbse-2012_formulae.tex" 1794212656 10296 cba4bf9dbce8750a0a6f262f7c038889 ""
-  "figs/Q13.png" 1794212656 32957 b87e8b4c36de64a4a598cebca2aa951f ""
-  "figs/Q19.png" 1794212656 23434 dab2a086ce24b6d1725d0e4937fe7df8 ""
-  "figs/Q21.png" 1794212656 45729 b846e67bd14f36a359370ac9ce54f61a ""
-  "figs/Q22.png" 1794212656 58332 d7958f4369e6d56c90e136d6fc1057dc ""
-  "figs/Q25.png" 1794212656 91188 7847a6e80cb9b99c2d8552878531d281 ""
-  "figs/logo.jpg" 1794212656 382648 cd8c4760ef18efd0782613502d16e226 ""
-  "gvv-book.sty" 1794212656 2363 72dd097fc960842e38a2d2c1f2d93726 ""
-  "gvv.sty" 1794212656 4434 bde4aa22cab0cf1e9425c3111a94b6d2 ""
-  "main.aux" 1794237766.12608 5101 425221cf8da3f35240fdac1500df2648 "pdflatex"
-  "main.ind" 1794237764.85808 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
-  "main.out" 1794237766.12708 348 e0adda41d132551934ab486fa7f60d13 "pdflatex"
-  "main.tex" 1794237533.42458 2727 4f2766839e2689c5a8d1ec61c6946ebc ""
-  "main.toc" 1794237766.12708 225 a74e357e600dc5e80e0a1829f3fbf3e9 "pdflatex"
+  "chapters/cbse-2012.tex" 1794424210 30212 2d51458ffce6a30d51a025b1579c91b3 ""
+  "chapters/cbse-2012_formulae.tex" 1794424210 19650 448550a8516f6c447b616b1d41abcfa5 ""
+  "figs/Q13.pdf" 1794424210 11370 f787e4f480668a320936f319e914a89e ""
+  "figs/Q19.pdf" 1794424210 10643 d3cc97b3e037262c3a6d1237a7b60b58 ""
+  "figs/Q21.pdf" 1794424210 9947 4bff42dff5e5fdca8f77cca7c8da3498 ""
+  "figs/Q22.pdf" 1794424210 14166 d4c53deabafbdc0b0b0f7118b6d9ed35 ""
+  "figs/Q25.pdf" 1794424210 21254 de1b7291f95cc26923b333c183e17290 ""
+  "gvv-book.sty" 1794424210 2363 72dd097fc960842e38a2d2c1f2d93726 ""
+  "gvv.sty" 1794424210 4434 bde4aa22cab0cf1e9425c3111a94b6d2 ""
+  "main.aux" 1794493034.61209 5269 d738b9ea40de0216b243ae7a521c32a6 "pdflatex"
+  "main.ind" 1794491759.78205 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
+  "main.out" 1794493034.61209 348 e0adda41d132551934ab486fa7f60d13 "pdflatex"
+  "main.tex" 1794424210 2249 632d3c516e399779be8497b0d3067c36 ""
+  "main.toc" 1794493034.61209 226 be7344da104f3c29629db745a7c082c1 "pdflatex"
   (generated)
   "main.aux"
   "main.idx"

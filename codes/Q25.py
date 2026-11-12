@@ -22,5 +22,5 @@ for (px, py) in [(0, 80), (10, 40), (30, 0)]:
 ax.plot(x, (260 - 10*x)/4, 'g--', label=r'$10x+4y=260$')
 ax.set_xlim(0, 40); ax.set_ylim(0, 100); ax.set_xlabel('x (packets of S)'); ax.set_ylabel('y (packets of T)')
 ax.grid(True, ls='--', alpha=0.5); ax.legend()
-plt.savefig('figs/Q25.png', dpi=150)
+plt.savefig('../figs/Q25.pdf', dpi=150)
 #plt.show()

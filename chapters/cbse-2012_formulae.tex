@@ -1,12 +1,20 @@
 \emergencystretch=3em
 \renewcommand{\vec}[1]{#1}
-\renewcommand{\solution}{\noindent Solution: }
 \begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
 \item For real $a$, the principal values satisfy
 \begin{align}
 	\tan^{-1} a + \cot^{-1} a = \frac{\pi}{2} \label{eq:EE26BTECH11205-tan-cot}
 \end{align}
-\item If $\vec{A}$ is a square matrix, $\vec{I}$ commutes with $\vec{A}$, so
+\solution Let $\theta = \tan^{-1}a$, so that $\tan\theta = a$ and $\theta \in \brak{-\frac{\pi}{2},\frac{\pi}{2}}$. Then $\frac{\pi}{2}-\theta \in \brak{0,\pi}$, which is the range of $\cot^{-1}$, and
+\begin{align}
+	\cot\brak{\frac{\pi}{2}-\theta} &= \tan\theta \notag
+	\\
+	&= a \notag
+	\\
+	\implies \cot^{-1}a &= \frac{\pi}{2}-\theta
+\end{align}
+Adding $\theta = \tan^{-1}a$ to both sides gives \eqref{eq:EE26BTECH11205-tan-cot}.
+\item For a square matrix $\vec{A}$,
 \begin{align}
 	\brak{\vec{I}+\vec{A}}^2 = \vec{I} + 2\vec{A} + \vec{A}^2 \label{eq:EE26BTECH11205-idem-binom}
 \end{align}
@@ -15,31 +23,92 @@
 	\vec{A}\vec{x} = \vec{b} \label{eq:EE26BTECH11205-linsys}
 \end{align}
 It has a unique solution $\vec{x} = \vec{A}^{-1}\vec{b}$ if and only if $\mydet{\vec{A}} \neq 0$. The solution is obtained by reducing the augmented matrix $\myvec{\vec{A} & \vec{b}}$ to an upper triangular form using row operations (Gaussian elimination) followed by back substitution.
+
+\smallskip
+\solution If $\mydet{\vec{A}} \neq 0$, then $\vec{A}^{-1}$ exists. Multiplying $\vec{A}\vec{x} = \vec{b}$ on the left by $\vec{A}^{-1}$,
+\begin{align}
+	\vec{A}^{-1}\vec{A}\vec{x} = \vec{A}^{-1}\vec{b} \implies \vec{x} = \vec{A}^{-1}\vec{b}
+\end{align}
+so every solution equals $\vec{A}^{-1}\vec{b}$, and this vector does satisfy the system. Hence the solution exists and is unique. Conversely, if $\mydet{\vec{A}} = 0$, there is a vector $\vec{z} \neq \vec{0}$ with $\vec{A}\vec{z} = \vec{0}$. Then whenever $\vec{x}_0$ is a solution, so is $\vec{x}_0 + t\vec{z}$ for every real $t$, so the solution is not unique.
+
+Each row operation multiplies both sides by an invertible matrix $\vec{E}$, so $\brak{\vec{E}\vec{A}}\vec{x} = \vec{E}\vec{b}$ has the same solutions as $\vec{A}\vec{x} = \vec{b}$. Reducing to $\vec{U}\vec{x} = \vec{c}$ with $\vec{U}$ upper triangular, $\mydet{\vec{U}} = \prod_{i=1}^{n}u_{ii}$ is a non-zero multiple of $\mydet{\vec{A}}$, so every $u_{ii} \neq 0$. The last row gives $x_n = \frac{c_n}{u_{nn}}$, and back substitution gives
+\begin{align}
+	x_i = \frac{1}{u_{ii}}\brak{c_i - \sum_{k=i+1}^{n}u_{ik}x_k}, \quad i = n-1,\dots,1
+\end{align}
+
+\smallskip
+The system $\vec{A}\vec{x} = \vec{b}$ is consistent if and only if
+\begin{align}
+	\operatorname{rank}\vec{A} = \operatorname{rank}\myvec{\vec{A} & \vec{b}} \label{eq:EE26BTECH11205-rank-thm}
+\end{align}
+and then the solution is unique if and only if this common rank equals $n$, the number of unknowns.
+
+\smallskip
+\solution Write $\vec{A} = \myvec{\vec{a}_1 & \cdots & \vec{a}_n}$ in terms of its columns, so that $\vec{A}\vec{x} = x_1\vec{a}_1 + \cdots + x_n\vec{a}_n$. The system has a solution if and only if $\vec{b}$ is a linear combination of the columns of $\vec{A}$, that is, if and only if appending $\vec{b}$ does not increase the number of independent columns, which is \eqref{eq:EE26BTECH11205-rank-thm}. If the common rank is $n$, the columns are independent and the coefficients $x_1,\dots,x_n$ are unique. If it is less than $n$, there is $\vec{z} \neq \vec{0}$ with $\vec{A}\vec{z} = \vec{0}$, and the solution is not unique.
 \item Determinants.
 \begin{enumerate}
 \item Adding a multiple of one row to another row does not change the determinant.
 \begin{align}
 	\mydet{\vec{E}\vec{M}} = \mydet{\vec{M}},\quad \vec{E} = \vec{I} + \lambda \vec{e}_i\vec{e}_j^{\top},\; i \neq j \label{eq:EE26BTECH11205-det-elem}
 \end{align}
-\solution $\vec{E}$ is triangular with unit diagonal, so $\mydet{\vec{E}} = 1$ and $\mydet{\vec{E}\vec{M}} = \mydet{\vec{E}}\mydet{\vec{M}}$.
+\solution Since $\vec{e}_j^{\top}\vec{M}$ is row $j$ of $\vec{M}$, the product $\vec{E}\vec{M} = \vec{M} + \lambda\vec{e}_i\brak{\vec{e}_j^{\top}\vec{M}}$ is $\vec{M}$ with $\lambda$ times row $j$ added to row $i$. As $i \neq j$, $\vec{E}$ is triangular (upper if $i<j$, lower if $i>j$) with unit diagonal, so from \eqref{eq:EE26BTECH11205-det-tri} $\mydet{\vec{E}} = 1$ and
+\begin{align}
+	\mydet{\vec{E}\vec{M}} &= \mydet{\vec{E}}\mydet{\vec{M}} \notag
+	\\
+	&= \mydet{\vec{M}}
+\end{align}
 \item The determinant of a triangular matrix is the product of its diagonal entries.
 \begin{align}
 	\mydet{\vec{U}} = \prod_{i=1}^{n} u_{ii} \label{eq:EE26BTECH11205-det-tri}
 \end{align}
-\item If a row of $\vec{M}$ is a multiple of another row, then the row operation in \eqref{eq:EE26BTECH11205-det-elem} produces a zero row, and
+\solution Let $\vec{U}$ be upper triangular, so $u_{ij} = 0$ for $i > j$. Only $u_{11}$ is non-zero in the first column, so expanding along it, $\mydet{\vec{U}} = u_{11}\mydet{\vec{U}_1}$, where $\vec{U}_1$ is the upper triangular matrix of order $n-1$ obtained by deleting row $1$ and column $1$. Repeating this $n$ times,
+\begin{align}
+	\mydet{\vec{U}} = u_{11}u_{22}\cdots u_{nn}
+\end{align}
+For a lower triangular $\vec{L}$, the matrix $\vec{L}^{\top}$ is upper triangular and $\mydet{\vec{L}} = \mydet{\vec{L}^{\top}}$, so the same result holds.
+\item If a row of $\vec{M}$ is a multiple of another row, then
 \begin{align}
 	\mydet{\vec{M}} = 0 \label{eq:EE26BTECH11205-det-prop}
 \end{align}
+\solution Let row $i$ of $\vec{M}$ be $k$ times row $j$, with $i \neq j$. Applying \eqref{eq:EE26BTECH11205-det-elem} with $\lambda = -k$, row $i$ of $\vec{E}\vec{M}$ becomes $k\,\text{row}_j - k\,\text{row}_j = \vec{0}$, and
+\begin{align}
+	\mydet{\vec{M}} &= \mydet{\vec{E}\vec{M}} \notag
+	\\
+	&= 0
+\end{align}
+because a matrix with a zero row has determinant $0$ (expand along that row).
 \end{enumerate}
 \item For differentiable $f$,
 \begin{align}
 	\int e^x \brak{f(x) + f^{\prime}(x)}dx = e^x f(x) + c \label{eq:EE26BTECH11205-exp-int}
 \end{align}
-\solution By the product rule, $\frac{d}{dx}\brak{e^x f(x)} = e^x\brak{f(x) + f^{\prime}(x)}$.
+\solution By the product rule,
+\begin{align}
+	\frac{d}{dx}\brak{e^x f(x)} &= e^x f(x) + e^x f^{\prime}(x) \notag
+	\\
+	&= e^x\brak{f(x) + f^{\prime}(x)}
+\end{align}
+Integrating both sides with respect to $x$, the left side gives $e^x f(x)$ and the right side is the integral in \eqref{eq:EE26BTECH11205-exp-int}, up to the constant $c$.
 \item The area of the parallelogram with adjacent sides $\vec{a}$ and $\vec{b}$ is
 \begin{align}
-	\sqrt{\det\brak{\vec{M}^{\top}\vec{M}}}, \quad \vec{M} = \myvec{\vec{a} & \vec{b}} \label{eq:EE26BTECH11205-area-gram}
+	\norm{\vec{a}\times\vec{b}} \label{eq:EE26BTECH11205-area-cross}
 \end{align}
+where, for $\vec{a} = \myvec{a_1 \\ a_2 \\ a_3}$ and $\vec{b} = \myvec{b_1 \\ b_2 \\ b_3}$,
+\begin{align}
+	\vec{a}\times\vec{b} = \myvec{a_2b_3 - a_3b_2 \\ a_3b_1 - a_1b_3 \\ a_1b_2 - a_2b_1} \label{eq:EE26BTECH11205-cross-comp}
+\end{align}
+\solution The area is base times height. If $\theta$ is the angle between $\vec{a}$ and $\vec{b}$, the height over the base $\vec{a}$ is $\norm{\vec{b}}\sin\theta$, so
+\begin{align}
+	\text{Area} = \norm{\vec{a}}\norm{\vec{b}}\sin\theta
+\end{align}
+Expanding the components in \eqref{eq:EE26BTECH11205-cross-comp} gives $\norm{\vec{a}\times\vec{b}}^2 = \norm{\vec{a}}^2\norm{\vec{b}}^2 - \brak{\vec{a}^{\top}\vec{b}}^2$, and $\vec{a}^{\top}\vec{b} = \norm{\vec{a}}\norm{\vec{b}}\cos\theta$, so
+\begin{align}
+	\norm{\vec{a}\times\vec{b}}^2 &= \norm{\vec{a}}^2\norm{\vec{b}}^2\brak{1-\cos^2\theta} \notag
+	\\
+	&= \brak{\norm{\vec{a}}\norm{\vec{b}}\sin\theta}^2
+\end{align}
+Since $\sin\theta \ge 0$ for $0 \le \theta \le \pi$, taking square roots gives \eqref{eq:EE26BTECH11205-area-cross}.
+
 \item The direction cosines of a line with direction vector $\vec{d}$ are the components of the unit vector
 \begin{align}
 	\frac{\vec{d}}{\norm{\vec{d}}} = \myvec{\cos\alpha \\ \cos\beta \\ \cos\gamma} \label{eq:EE26BTECH11205-dircos}
@@ -53,7 +122,9 @@ Then $f_{\vec{M}}\circ f_{\vec{N}} = f_{\vec{M}\vec{N}}$ and $f_{k\vec{M}} = f_{
 \smallskip
 \solution In homogeneous coordinates,
 \begin{align}
-	\vec{M}\myvec{x \\ 1} = \myvec{ax+b \\ cx+d} = \brak{cx+d}\myvec{f(x) \\ 1}
+	\vec{M}\myvec{x \\ 1} &= \myvec{ax+b \\ cx+d} \notag
+	\\
+	&= \brak{cx+d}\myvec{f(x) \\ 1}
 \end{align}
 so applying $f_{\vec{N}}$ followed by $f_{\vec{M}}$ multiplies the column vector by $\vec{N}$ and then by $\vec{M}$, up to non-zero scalars, which do not change the ratio of the entries.
 \item If $f\circ f = \text{identity}$ on its domain and $f$ maps the domain onto itself, then $f$ is one-one, onto, and
@@ -84,6 +155,13 @@ so applying $f_{\vec{N}}$ followed by $f_{\vec{M}}$ multiplies the column vector
 \begin{align}
 	\nabla F = \myvec{\frac{\partial F}{\partial x} \\ \frac{\partial F}{\partial y}}, \quad \vec{x} = \vec{P} + \lambda\nabla F\brak{\vec{P}} \label{eq:EE26BTECH11205-grad-normal}
 \end{align}
+\solution Let $\vec{r}(t) = \myvec{x(t) \\ y(t)}$ trace the curve near $\vec{P}$, so $F\brak{x(t),y(t)} = 0$ for all $t$. Differentiating with the chain rule,
+\begin{align}
+	\frac{\partial F}{\partial x}\frac{dx}{dt} + \frac{\partial F}{\partial y}\frac{dy}{dt} &= \brak{\nabla F}^{\top}\frac{d\vec{r}}{dt} \notag
+	\\
+	&= 0
+\end{align}
+Since $\frac{d\vec{r}}{dt}$ is tangent to the curve, $\nabla F\brak{\vec{P}}$ is perpendicular to the tangent at $\vec{P}$, that is, normal to the curve. The line through $\vec{P}$ with this direction is $\vec{x} = \vec{P} + \lambda\nabla F\brak{\vec{P}}$.
 \item Integration by parts:
 \begin{align}
 	\int u\,dv = uv - \int v\,du \label{eq:EE26BTECH11205-ibp}
@@ -92,7 +170,18 @@ so applying $f_{\vec{N}}$ followed by $f_{\vec{M}}$ multiplies the column vector
 \begin{align}
 	\frac{d}{dx}\brak{\mu y} = \mu Q \label{eq:EE26BTECH11205-linode}
 \end{align}
-\solution $\frac{d}{dx}\brak{\mu y} = \mu\brak{y^{\prime} + Py}$ because $\mu^{\prime} = P\mu$.
+\solution Since $\mu = e^{\int P\,dx}$, we have $\mu^{\prime} = P\mu$. By the product rule,
+\begin{align}
+	\frac{d}{dx}\brak{\mu y} &= \mu^{\prime}y + \mu y^{\prime} \notag
+	\\
+	&= \mu\brak{y^{\prime} + Py} \notag
+	\\
+	&= \mu Q
+\end{align}
+Integrating both sides gives $\mu y = \int \mu Q\,dx + C$, so
+\begin{align}
+	y = \frac{1}{\mu}\brak{\int \mu Q\,dx + C}
+\end{align}
 \item A separable equation $f(x)\,dx + g(y)\,dy = 0$ is solved by
 \begin{align}
 	\int f(x)\,dx + \int g(y)\,dy = C \label{eq:EE26BTECH11205-sepode}
@@ -101,7 +190,28 @@ so applying $f_{\vec{N}}$ followed by $f_{\vec{M}}$ multiplies the column vector
 \begin{align}
 	\vec{\beta}_1 = \vec{P}\vec{\beta},\quad \vec{\beta}_2 = \brak{\vec{I}-\vec{P}}\vec{\beta},\quad \vec{P} = \frac{\vec{\alpha}\vec{\alpha}^{\top}}{\vec{\alpha}^{\top}\vec{\alpha}} \label{eq:EE26BTECH11205-proj}
 \end{align}
-\solution Let $\vec{\beta}_1 = \lambda\vec{\alpha}$. Then $\vec{\alpha}^{\top}\vec{\beta}_2 = \vec{\alpha}^{\top}\brak{\vec{\beta} - \lambda\vec{\alpha}} = 0$ gives $\lambda = \frac{\vec{\alpha}^{\top}\vec{\beta}}{\vec{\alpha}^{\top}\vec{\alpha}}$.
+\solution Since $\vec{\beta}_1 \parallel \vec{\alpha}$, let $\vec{\beta}_1 = \lambda\vec{\alpha}$. Then $\vec{\beta}_2 = \vec{\beta} - \lambda\vec{\alpha}$, and $\vec{\beta}_2 \perp \vec{\alpha}$ requires
+\begin{align}
+	\vec{\alpha}^{\top}\vec{\beta}_2 &= \vec{\alpha}^{\top}\brak{\vec{\beta} - \lambda\vec{\alpha}} \notag
+	\\
+	&= 0 \notag
+	\\
+	\implies \lambda &= \frac{\vec{\alpha}^{\top}\vec{\beta}}{\vec{\alpha}^{\top}\vec{\alpha}}
+\end{align}
+Hence
+\begin{align}
+	\vec{\beta}_1 &= \frac{\vec{\alpha}^{\top}\vec{\beta}}{\vec{\alpha}^{\top}\vec{\alpha}}\vec{\alpha} \notag
+	\\
+	&= \frac{\vec{\alpha}\vec{\alpha}^{\top}}{\vec{\alpha}^{\top}\vec{\alpha}}\vec{\beta} \notag
+	\\
+	&= \vec{P}\vec{\beta}
+	\\
+	\vec{\beta}_2 &= \vec{\beta} - \vec{\beta}_1 \notag
+	\\
+	&= \brak{\vec{I}-\vec{P}}\vec{\beta}
+\end{align}
+Check: $\vec{\alpha}^{\top}\vec{\beta}_2 = \vec{\alpha}^{\top}\vec{\beta} - \frac{\vec{\alpha}^{\top}\vec{\alpha}\,\vec{\alpha}^{\top}\vec{\beta}}{\vec{\alpha}^{\top}\vec{\alpha}} = 0$.
+
 \item A line with direction $\vec{d}$ is parallel to the planes $\vec{n}_1^{\top}\vec{x} = c_1$ and $\vec{n}_2^{\top}\vec{x} = c_2$ if
 \begin{align}
 	\myvec{\vec{n}_1^{\top} \\ \vec{n}_2^{\top}}\vec{d} = \vec{0} \implies \vec{d} = \vec{n}_1\times\vec{n}_2 \label{eq:EE26BTECH11205-line-planes}
@@ -115,7 +225,11 @@ The line through $\vec{P}$ is $\vec{x} = \vec{P} + \lambda\vec{d}$, and its Cart
 \end{align}
 \solution Since $k\comb{n}{k} = n\comb{n-1}{k-1}$,
 \begin{align}
-	\mean{X} = np\sum_{k=1}^{n}\comb{n-1}{k-1}p^{k-1}q^{n-k} = np\brak{p+q}^{n-1} = np
+	\mean{X} &= np\sum_{k=1}^{n}\comb{n-1}{k-1}p^{k-1}q^{n-k} \notag
+	\\
+	&= np\brak{p+q}^{n-1} \notag
+	\\
+	&= np
 \end{align}
 \item If $\vec{A}$ and $\vec{B}$ are invertible, then
 \begin{align}
@@ -126,21 +240,62 @@ Also, $\vec{A}^{-1} = \frac{\operatorname{adj}\brak{\vec{A}}}{\mydet{\vec{A}}}$,
 \smallskip
 \solution $\brak{\vec{A}\vec{B}}\brak{\vec{B}^{-1}\vec{A}^{-1}} = \vec{A}\brak{\vec{B}\vec{B}^{-1}}\vec{A}^{-1} = \vec{I}$.
 \item If $V^{\prime}\brak{h_0} = 0$ and $V^{\prime\prime}\brak{h_0} < 0$, then $V$ has a local maximum at $h_0$. \label{eq:EE26BTECH11205-second-deriv}
-\item A right circular cone of height $h$ and base radius $r$ is inscribed in a sphere of radius $R$, with the apex and the base circle on the sphere. The axial section shows that the centre of the base is at distance $\abs{h-R}$ from the centre of the sphere, so
+\item A right circular cone of height $h$ and base radius $r$ is inscribed in a sphere of radius $R$, with the apex and the base circle on the sphere, then
 \begin{align}
-	r^2 = R^2 - \brak{h-R}^2 = h\brak{2R-h},\; V = \frac{\pi}{3}r^2h = \frac{\pi}{3}h^2\brak{2R-h},\; 0<h<2R \label{eq:EE26BTECH11205-cone-vol}
+	r^2 = h\brak{2R-h},\; V = \frac{\pi}{3}r^2h = \frac{\pi}{3}h^2\brak{2R-h},\; 0<h<2R \label{eq:EE26BTECH11205-cone-vol}
 \end{align}
 \item The area under $y = f(x) \ge 0$ between $x=a$ and $x=b$ is
 \begin{align}
 	\int_{a}^{b}f(x)\,dx \label{eq:EE26BTECH11205-area-int}
 \end{align}
 For a circle of radius $r$, $\int\sqrt{r^2-x^2}\,dx = \frac{x}{2}\sqrt{r^2-x^2} + \frac{r^2}{2}\sin^{-1}\frac{x}{r} + c$.
+
+\smallskip
+\solution Divide $[a,b]$ into $n$ strips of width $h = \frac{b-a}{n}$. The strip at $x$ has area approximately $f(x)\,h$, and adding the strips and letting $n \to \infty$ gives the area $\int_a^b f(x)\,dx$, as in \eqref{eq:EE26BTECH11205-riemann}. For the circle, put $x = r\sin\theta$ with $\theta \in \sbrak{-\frac{\pi}{2},\frac{\pi}{2}}$, so $\sqrt{r^2-x^2} = r\cos\theta$ and $dx = r\cos\theta\,d\theta$. Then
+\begin{align}
+	\int\sqrt{r^2-x^2}\,dx &= r^2\int\cos^2\theta\,d\theta \notag
+	\\
+	&= \frac{r^2}{2}\int\brak{1+\cos 2\theta}\,d\theta \notag
+	\\
+	&= \frac{r^2}{2}\brak{\theta + \sin\theta\cos\theta} + c
+\end{align}
+Using $\theta = \sin^{-1}\frac{x}{r}$ and $\sin\theta\cos\theta = \frac{x}{r}\cdot\frac{\sqrt{r^2-x^2}}{r}$,
+\begin{align}
+	\int\sqrt{r^2-x^2}\,dx = \frac{x}{2}\sqrt{r^2-x^2} + \frac{r^2}{2}\sin^{-1}\frac{x}{r} + c
+\end{align}
 \item A definite integral is the limit of a sum,
 \begin{align}
 	\int_{a}^{b}f(x)\,dx = \lim_{n\to\infty}h\sum_{i=1}^{n}f\brak{a+ih},\quad h = \frac{b-a}{n} \label{eq:EE26BTECH11205-riemann}
 \end{align}
 \begin{align}
 	\sum_{i=1}^{n}i = \frac{n\brak{n+1}}{2},\quad \sum_{i=1}^{n}i^2 = \frac{n\brak{n+1}\brak{2n+1}}{6} \label{eq:EE26BTECH11205-sums}
+\end{align}
+\solution For \eqref{eq:EE26BTECH11205-riemann}, divide $[a,b]$ into $n$ equal parts of width $h = \frac{b-a}{n}$ with points $x_i = a+ih$, $i = 0,1,\dots,n$. On the $i^{\text{th}}$ part take a rectangle of height $f\brak{x_i}$; its area is $h\,f\brak{a+ih}$. The total area of the rectangles is
+\begin{align}
+	S_n = h\sum_{i=1}^{n}f\brak{a+ih}
+\end{align}
+As $n \to \infty$, $h \to 0$, and for a continuous $f$ the sums $S_n$ approach the area under the curve, which is $\int_a^b f(x)\,dx$. For example, for $f(x) = x$ on $[0,1]$, $h = \frac{1}{n}$ and, using \eqref{eq:EE26BTECH11205-sums},
+\begin{align}
+	S_n &= \frac{1}{n}\sum_{i=1}^{n}\frac{i}{n} \notag
+	\\
+	&= \frac{n+1}{2n} \to \frac{1}{2} = \int_0^1 x\,dx
+\end{align}
+
+\solution For \eqref{eq:EE26BTECH11205-sums}, let $S = \sum_{i=1}^{n}i$. Writing the sum forwards and backwards and adding term by term, each of the $n$ pairs adds up to $n+1$, so
+\begin{align}
+	2S = n\brak{n+1} \implies \sum_{i=1}^{n}i = \frac{n\brak{n+1}}{2}
+\end{align}
+For the second sum, use $\brak{i+1}^3 - i^3 = 3i^2 + 3i + 1$ and add for $i = 1,\dots,n$. The left side telescopes to $\brak{n+1}^3 - 1$, so
+\begin{align}
+	\brak{n+1}^3 - 1 = 3\sum_{i=1}^{n}i^2 + 3\,\frac{n\brak{n+1}}{2} + n
+\end{align}
+Since $\brak{n+1}^3 - 1 - n = n\brak{n+1}\brak{n+2}$,
+\begin{align}
+	3\sum_{i=1}^{n}i^2 &= n\brak{n+1}\brak{n+2} - \frac{3n\brak{n+1}}{2} \notag
+	\\
+	&= \frac{n\brak{n+1}\brak{2n+1}}{2} \notag
+	\\
+	\implies \sum_{i=1}^{n}i^2 &= \frac{n\brak{n+1}\brak{2n+1}}{6}
 \end{align}
 \item For $t = \tan x$,
 \begin{align}
@@ -156,4 +311,15 @@ The plane contains the line $\vec{x} = \vec{A}_0 + \lambda\vec{d}$ if $\vec{n}^{
 \begin{align}
 	\pr{A_i|E} = \frac{\pr{A_i}\pr{E|A_i}}{\sum_{j=1}^{n}\pr{A_j}\pr{E|A_j}} \label{eq:EE26BTECH11205-bayes}
 \end{align}
+\solution By the definition of conditional probability and the multiplication rule,
+\begin{align}
+	\pr{A_i|E} = \frac{\pr{A_i \cap E}}{\pr{E}}, \quad \pr{A_i \cap E} = \pr{A_i}\pr{E|A_i}
+\end{align}
+Since $A_1,\dots,A_n$ are mutually exclusive and exhaustive, $E$ is the disjoint union of the events $A_j \cap E$, so by the total probability rule
+\begin{align}
+	\pr{E} &= \sum_{j=1}^{n}\pr{A_j \cap E} \notag
+	\\
+	&= \sum_{j=1}^{n}\pr{A_j}\pr{E|A_j}
+\end{align}
+Substituting these in the first equation gives \eqref{eq:EE26BTECH11205-bayes}.
 \end{enumerate}
