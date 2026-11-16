@@ -1,22 +1,23 @@
 #Code by EE26BTECH11205
 #CBSE 2012 Mathematics (65/2/1)
-#Q23: integral_1^3 (x^2 + x) dx as a limit of a sum ; OR integral_0^{pi/4} cos^2 x/(cos^2 x + 4 sin^2 x) dx
+#Q23: 3 e^x tan y dx + (2 - e^x) sec^2 y dy = 0 , y(0) = pi/4
 import numpy as np
-import sympy as sp
-from scipy.integrate import quad
-n = sp.symbols('n', positive=True)
-i = sp.symbols('i', positive=True, integer=True)
-h = 2/n
-S = sp.summation(h*((1 + i*h)**2 + (1 + i*h)), (i, 1, n))
-print("S_n =", sp.simplify(S), "  limit =", sp.limit(S, n, sp.oo))
-for N in [10, 100, 1000, 10000]:
-    hh = 2/N; k = np.arange(1, N + 1); xk = 1 + k*hh
-    print("n =", N, " right Riemann sum =", np.sum((xk**2 + xk)*hh))
-print("38/3 =", 38/3)
-# OR part
-x = sp.symbols('x')
-f = sp.cos(x)**2/(sp.cos(x)**2 + 4*sp.sin(x)**2)
-print("exact:", sp.simplify(sp.integrate(f, (x, 0, sp.pi/4))))
-cand = sp.Rational(2, 3)*sp.atan(2) - sp.pi/12
-print("candidate (2/3)atan(2) - pi/12 =", sp.N(cand))
-print("quad:", quad(lambda t: np.cos(t)**2/(np.cos(t)**2 + 4*np.sin(t)**2), 0, np.pi/4)[0])
+from scipy.integrate import solve_ivp
+import matplotlib.pyplot as plt
+# dy/dx = -3 e^x tan y / ((2 - e^x) sec^2 y), valid for 2 - e^x > 0 (x < ln 2)
+f = lambda x, y: -3*np.exp(x)*np.tan(y)/((2 - np.exp(x))/np.cos(y)**2)
+fw = solve_ivp(f, [0, 0.6], [np.pi/4], rtol=1e-11, atol=1e-13, dense_output=True)
+bw = solve_ivp(f, [0, -1.0], [np.pi/4], rtol=1e-11, atol=1e-13, dense_output=True)
+xs = np.linspace(0, 0.6, 7)
+exact = np.arctan((2 - np.exp(xs))**3)
+print("max |numerical - exact| =", np.max(np.abs(fw.sol(xs)[0] - exact)))
+x = np.linspace(-1.0, 0.65, 400)
+plt.figure(figsize=(6, 4))
+plt.plot(x, np.arctan((2 - np.exp(x))**3), 'b-', label=r'$y=\tan^{-1}(2-e^x)^3$')
+xn = np.concatenate((np.linspace(-1.0, -0.05, 6), np.linspace(0.05, 0.6, 6)))
+yn = np.array([bw.sol(v)[0] if v < 0 else fw.sol(v)[0] for v in xn])
+plt.plot(xn, yn, 'r.', label='numerical solution')
+plt.plot(0, np.pi/4, 'ko'); plt.annotate(r'$(0,\pi/4)$', (0, np.pi/4), textcoords='offset points', xytext=(6, 6))
+plt.xlabel('x'); plt.ylabel('y'); plt.grid(True, ls='--', alpha=0.5); plt.legend()
+plt.savefig('../figs/Q23.pdf', dpi=150)
+#plt.show()

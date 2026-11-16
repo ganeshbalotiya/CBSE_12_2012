@@ -1,16 +1,13 @@
 #Code by EE26BTECH11205
 #CBSE 2012 Mathematics (65/2/1)
-#Q24: plane through (2,1,-1), (-1,3,4) perpendicular to x - 2y + 4z = 10; contains the given line
+#Q24: beta = beta1 + beta2,  beta1 || alpha,  beta2 _|_ alpha
 import numpy as np
-P1 = np.array([2, 1, -1]); P2 = np.array([-1, 3, 4])
-n0 = np.array([1, -2, 4])
-n = np.cross(P2 - P1, n0)
-c = n @ P1
-print("normal =", n, " n.r = ", c, " check P2:", n @ P2)
-A0 = np.array([-1, 3, 4]); d = np.array([3, -2, -5])
-print("n.d =", n @ d, " n.A0 - c =", n @ A0 - c)
-# stack as a linear system:  [ (P2-P1)^T ; n0^T ] n = 0
-M = np.vstack([P2 - P1, n0])
-u, s, vt = np.linalg.svd(M)
-nn = vt[-1]
-print("null-space direction (normalised):", nn/nn[0]*18)
+from fractions import Fraction
+al = np.array([[3], [4], [5]], dtype=float)
+be = np.array([[2], [1], [-4]], dtype=float)
+P = al @ al.T/(al.T @ al)             # projection matrix onto span{alpha}
+b1 = P @ be
+b2 = be - b1
+print("beta1 =", b1.ravel(), [str(Fraction(v).limit_denominator(10)) for v in b1.ravel()])
+print("beta2 =", b2.ravel(), [str(Fraction(v).limit_denominator(10)) for v in b2.ravel()])
+print("alpha.beta2 =", (al.T @ b2).item(), " beta1+beta2 = beta :", np.allclose(b1 + b2, be))

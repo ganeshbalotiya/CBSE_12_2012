@@ -1,12 +1,10 @@
 #Code by EE26BTECH11205
 #CBSE 2012 Mathematics (65/2/1)
-#Q12: y = e^(a acos x):  (1-x^2) y'' - x y' - a^2 y = 0     and OR part
-import sympy as sp
-x, a = sp.symbols('x a')
-y = sp.exp(a*sp.acos(x))
-print("ODE residual =", sp.simplify((1 - x**2)*sp.diff(y, x, 2) - x*sp.diff(y, x) - a**2*y))
-# OR: x sqrt(1+y) + y sqrt(1+x) = 0, x != y   ->  y = -x/(1+x)
-yy = -x/(1 + x)
-res = x*sp.sqrt(1 + yy) + yy*sp.sqrt(1 + x)
-print("residual at x = 0.3 :", sp.N(res.subs(x, 0.3)), "  x = -0.6 :", sp.N(res.subs(x, -0.6)))
-print("dy/dx =", sp.simplify(sp.diff(yy, x)), "  = -1/(1+x)^2 :", sp.simplify(sp.diff(yy, x) + 1/(1 + x)**2) == 0)
+#Q12: sin^-1(63/65) = sin^-1(5/13) + cos^-1(3/5)
+import numpy as np
+lhs = np.arcsin(63/65)
+rhs = np.arcsin(5/13) + np.arccos(3/5)
+print("sin^-1(63/65) =", lhs, " sin^-1(5/13) + cos^-1(3/5) =", rhs, np.isclose(lhs, rhs))
+z = (12 + 5j)/13 * (3 + 4j)/5                       # product of the two unit complex numbers
+print("(12+5j)(3+4j)/65 =", z, " (16+63j)/65 =", (16 + 63j)/65)
+print("|z| =", abs(z), " arg z =", np.angle(z), " sin^-1(63/65) =", lhs)
