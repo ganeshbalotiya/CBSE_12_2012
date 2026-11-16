@@ -1,13 +1,9 @@
 #Code by EE26BTECH11205
 #CBSE 2012 Mathematics (65/2/1)
-#Q17: beta = beta1 + beta2,  beta1 || alpha,  beta2 _|_ alpha
-import numpy as np
-from fractions import Fraction
-al = np.array([[3], [4], [5]], dtype=float)
-be = np.array([[2], [1], [-4]], dtype=float)
-P = al @ al.T/(al.T @ al)             # projection matrix onto span{alpha}
-b1 = P @ be
-b2 = be - b1
-print("beta1 =", b1.ravel(), [str(Fraction(v).limit_denominator(10)) for v in b1.ravel()])
-print("beta2 =", b2.ravel(), [str(Fraction(v).limit_denominator(10)) for v in b2.ravel()])
-print("alpha.beta2 =", (al.T @ b2).item(), " beta1+beta2 = beta :", np.allclose(b1 + b2, be))
+#Q17: x sqrt(1+y) + y sqrt(1+x) = 0, x != y   ->  y = -x/(1+x),  dy/dx = -1/(1+x)^2
+import sympy as sp
+x = sp.symbols('x')
+yy = -x/(1 + x)
+res = x*sp.sqrt(1 + yy) + yy*sp.sqrt(1 + x)
+print("residual at x = 0.3 :", sp.N(res.subs(x, 0.3)), "  x = -0.6 :", sp.N(res.subs(x, -0.6)))
+print("dy/dx =", sp.simplify(sp.diff(yy, x)), "  = -1/(1+x)^2 :", sp.simplify(sp.diff(yy, x) + 1/(1 + x)**2) == 0)

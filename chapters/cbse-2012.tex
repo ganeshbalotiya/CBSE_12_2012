@@ -1,39 +1,64 @@
 \providecommand{\rupee}{Rs.}
 \emergencystretch=3em
 \renewcommand{\vec}[1]{#1}
+\makeatletter
+\g@addto@macro\normalsize{\abovedisplayskip=10pt plus 3pt minus 3pt \belowdisplayskip=10pt plus 3pt minus 3pt \abovedisplayshortskip=6pt plus 2pt minus 2pt \belowdisplayshortskip=8pt plus 2pt minus 2pt \jot=5pt}
+\makeatother
+\normalsize
 \begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi, itemsep=3ex]
-%--------------------------------------------------------------------- Section A
+%================================ Question 1 begin ================================
+\item
+If the binary operation $*$ on the set $\mathbb{Z}$ of integers is defined by $a * b = a + b - 5$, then write the identity element for the operation $*$ in $\mathbb{Z}$.
 
+\medskip
+\solution Let $e$ be the identity element. From \eqref{eq:EE26BTECH11205-identity},
+\begin{align}
+	a * e &= a + e - 5 \notag
+	\\
+	&= a \notag
+	\\
+	\implies e &= 5
+\end{align}
+Also, $e * a = 5 + a - 5 = a$ and $5 \in \mathbb{Z}$. Hence the identity element is $5$.
+%================================ Question 1 end ==================================
+
+%================================ Question 2 begin ================================
 \item
 Write the value of $\cot\brak{\tan^{-1}a + \cot^{-1}a}$.
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-tan-cot},
 \begin{align}
 	\cot\brak{\tan^{-1}a + \cot^{-1}a} &= \cot\frac{\pi}{2} \notag
 	\\
 	&= 0
 \end{align}
+%================================ Question 2 end ==================================
 
+%================================ Question 3 begin ================================
 \item
 If $\vec{A}$ is a square matrix such that $\vec{A}^2 = \vec{A}$, then write the value of $\brak{\vec{I}+\vec{A}}^2 - 3\vec{A}$.
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-idem-binom} and $\vec{A}^2 = \vec{A}$,
 \begin{align}
 	\brak{\vec{I}+\vec{A}}^2 - 3\vec{A} &= \vec{I} + 2\vec{A} + \vec{A} - 3\vec{A} \notag
 	\\
 	&= \vec{I}
 \end{align}
+
+\medskip
 The following code verifies the solution using a random idempotent matrix
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q02.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q03.py}@*)
 \end{lstlisting}
+%================================ Question 3 end ==================================
 
+%================================ Question 4 begin ================================
 \item
 If $x\myvec{2 \\ 3} + y\myvec{-1 \\ 1} = \myvec{10 \\ 5}$, write the value of $x$.
 
-\smallskip
+\medskip
 \solution The equation can be expressed as
 \begin{align}
 	\myvec{2 & -1 \\ 3 & 1}\myvec{x \\ y} = \myvec{10 \\ 5}
@@ -50,19 +75,21 @@ Both $\vec{A}$ and $\myvec{\vec{A} & \vec{b}}$ have two non-zero rows, so $\oper
 \end{align}
 Hence $x = 3$ (and $y = -4$).
 
-\smallskip
+\medskip
 The following code verifies the solution
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q03.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q04.py}@*)
 \end{lstlisting}
+%================================ Question 4 end ==================================
 
+%================================ Question 5 begin ================================
 \item
 Write the value of the following determinant:
 \begin{align}
 	\mydet{102 & 18 & 36 \\ 1 & 3 & 4 \\ 17 & 3 & 6}
 \end{align}
 
-\smallskip
+\medskip
 \solution
 Let $\vec{R}_i$ denote the $i^{\text{th}}$ row. Then
 \begin{align}
@@ -73,11 +100,13 @@ Let $\vec{R}_i$ denote the $i^{\text{th}}$ row. Then
 	&= 6\vec{R}_3
 \end{align}
 The row operation $\vec{R}_1 \to \vec{R}_1 - 6\vec{R}_3$ gives a zero row. From \eqref{eq:EE26BTECH11205-det-prop}, the determinant is $0$.
+%================================ Question 5 end ==================================
 
+%================================ Question 6 begin ================================
 \item
 If $\int\brak{\frac{x-1}{x^2}}e^x\,dx = f(x)e^x + c$, then write the value of $f(x)$.
 
-\smallskip
+\medskip
 \solution Write
 \begin{align}
 	\frac{x-1}{x^2} &= \frac{1}{x} - \frac{1}{x^2} \notag
@@ -89,11 +118,44 @@ From \eqref{eq:EE26BTECH11205-exp-int},
 	\int\brak{\frac{x-1}{x^2}}e^x\,dx = \frac{e^x}{x} + c
 \end{align}
 Hence $f(x) = \frac{1}{x}$.
+%================================ Question 6 end ==================================
 
+%================================ Question 7 begin ================================
+\item
+If $\int_{0}^{a}3x^2\,dx = 8$, write the value of $a$.
+
+\medskip
+\solution From \eqref{eq:EE26BTECH11205-power-int} with $n = 2$,
+\begin{align}
+	3\int_{0}^{a}x^2\,dx &= 3\cdot\frac{a^3}{3} \notag
+	\\
+	&= a^3 \notag
+	\\
+	&= 8 \implies a = 2
+\end{align}
+since $a$ is real.
+%================================ Question 7 end ==================================
+
+%================================ Question 8 begin ================================
+\item
+Write the value of $\brak{\hat{\imath}\times\hat{\jmath}}\cdot\hat{k} + \brak{\hat{\jmath}\times\hat{k}}\cdot\hat{\imath}$.
+
+\medskip
+\solution From \eqref{eq:EE26BTECH11205-unit-cross},
+\begin{align}
+	\brak{\hat{\imath}\times\hat{\jmath}}\cdot\hat{k} + \brak{\hat{\jmath}\times\hat{k}}\cdot\hat{\imath} &= \hat{k}\cdot\hat{k} + \hat{\imath}\cdot\hat{\imath} \notag
+	\\
+	&= 1 + 1 \notag
+	\\
+	&= 2
+\end{align}
+%================================ Question 8 end ==================================
+
+%================================ Question 9 begin ================================
 \item
 Write the value of the area of the parallelogram determined by the vectors $2\hat{\imath}$ and $3\hat{\jmath}$.
 
-\smallskip
+\medskip
 \solution In components,
 \begin{align}
 	\vec{a} &= 2\hat{\imath} \notag
@@ -118,11 +180,13 @@ From \eqref{eq:EE26BTECH11205-area-cross},
 	\\
 	&= 6
 \end{align}
+%================================ Question 9 end ==================================
 
+%================================ Question 10 begin ================================
 \item
 Write the direction cosines of a line parallel to the $z$-axis.
 
-\smallskip
+\medskip
 \solution A direction vector of the $z$-axis is
 \begin{align}
 	\vec{d} = \myvec{0 \\ 0 \\ 1}, \quad \norm{\vec{d}} = 1
@@ -132,12 +196,13 @@ From \eqref{eq:EE26BTECH11205-dircos}, the direction cosines are
 	\brak{\cos\alpha,\cos\beta,\cos\gamma} = \brak{0,0,1}
 \end{align}
 (The opposite orientation gives $\brak{0,0,-1}$.)
+%================================ Question 10 end ==================================
 
-%--------------------------------------------------------------------- Section B
+%================================ Question 11 begin ================================
 \item
 If $f(x) = \frac{4x+3}{6x-4}$, $x \neq \frac{2}{3}$, show that $f\circ f(x) = x$ for all $x \neq \frac{2}{3}$. What is the inverse of $f$?
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-mobius}, $f$ corresponds to the matrix
 \begin{align}
 	\vec{M} &= \myvec{4 & 3 \\ 6 & -4}
@@ -153,14 +218,16 @@ Further, $f(x) = \frac{2}{3}$ would require $4x+3 = 4x - \frac{8}{3}$, which is 
 	\\
 	&= \frac{4x+3}{6x-4}, \quad x \neq \frac{2}{3}
 \end{align}
+%================================ Question 11 end ==================================
 
+%================================ Question 12 begin ================================
 \item
 Prove that
 \begin{align}
 	\sin^{-1}\frac{63}{65} = \sin^{-1}\frac{5}{13} + \cos^{-1}\frac{3}{5}
 \end{align}
 
-\smallskip
+\medskip
 \solution
 Let $\alpha = \sin^{-1}\frac{5}{13}$ and $\beta = \cos^{-1}\frac{3}{5}$. Then $\alpha,\beta \in \brak{0,\frac{\pi}{2}}$, and
 \begin{align}
@@ -176,10 +243,19 @@ Hence $\cos\brak{\alpha+\beta} = \frac{16}{65} > 0$ and $\sin\brak{\alpha+\beta}
 \begin{align}
 	\alpha + \beta = \sin^{-1}\frac{63}{65}
 \end{align}
-\par\medskip\centerline{OR}\smallskip
+
+\medskip
+The following code verifies the solution
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q12.py}@*)
+\end{lstlisting}
+%================================ Question 12 end ==================================
+
+%================================ Question 13 begin ================================
+\item
 Solve for $x$: $2\tan^{-1}\brak{\sin x} = \tan^{-1}\brak{2\sec x}$, $x \neq \frac{\pi}{2}$.
 
-\smallskip
+\medskip
 \solution The right hand side requires $\cos x \neq 0$, so $\abs{\sin x} < 1$. From \eqref{eq:EE26BTECH11205-arctan-double} with $u = \sin x$,
 \begin{align}
 	2\tan^{-1}\brak{\sin x} &= \tan^{-1}\frac{2\sin x}{1-\sin^2x} \notag
@@ -198,18 +274,28 @@ Hence $x = n\pi + \frac{\pi}{4}$, $n \in \mathbb{Z}$, and the principal solution
 \begin{align}
 	x = \frac{\pi}{4}
 \end{align}
-The following code verifies both parts, including the roots at $\frac{\pi}{4}$ and $\frac{5\pi}{4}$
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q09.py}@*)
-\end{lstlisting}
 
+\medskip
+The following code finds the roots numerically and generates \figref{fig:EE26BTECH11205-13}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q13.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\linewidth]{figs/Q13.pdf}
+    \caption{Both sides of $2\tan^{-1}\brak{\sin x} = \tan^{-1}\brak{2\sec x}$ meet at $x = \frac{\pi}{4}$ and $\frac{5\pi}{4}$}
+    \label{fig:EE26BTECH11205-13}
+\end{figure}
+%================================ Question 13 end ==================================
+
+%================================ Question 14 begin ================================
 \item
 Using properties of determinants, prove that
 \begin{align}
 	\mydet{a & a+b & a+b+c \\ 2a & 3a+2b & 4a+3b+2c \\ 3a & 6a+3b & 10a+6b+3c} = a^3
 \end{align}
 
-\smallskip
+\medskip
 \solution
 Let the matrix be $\vec{M}$. Apply the row operations $\vec{R}_2 \to \vec{R}_2 - 2\vec{R}_1$ and $\vec{R}_3 \to \vec{R}_3 - 3\vec{R}_1$,
 \begin{align}
@@ -229,15 +315,19 @@ From \eqref{eq:EE26BTECH11205-det-elem} and \eqref{eq:EE26BTECH11205-det-tri},
 	\\
 	&= a^3
 \end{align}
+
+\medskip
 The following code verifies the solution
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q10.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q14.py}@*)
 \end{lstlisting}
+%================================ Question 14 end ==================================
 
+%================================ Question 15 begin ================================
 \item
 If $x^my^n = \brak{x+y}^{m+n}$, prove that $\frac{dy}{dx} = \frac{y}{x}$.
 
-\smallskip
+\medskip
 \solution Taking logarithms of the absolute values (valid wherever $x,y,x+y \neq 0$)
 \begin{align}
 	m\ln\abs{x} + n\ln\abs{y} = \brak{m+n}\ln\abs{x+y}
@@ -257,14 +347,17 @@ If $nx \neq my$, then $x\frac{dy}{dx} = y$. If $nx = my$ on an interval, then $y
 	\frac{dy}{dx} = \frac{y}{x}
 \end{align}
 Remark. For integers $m,n$, dividing the given relation by $x^{m+n}$ gives $t^n = \brak{1+t}^{m+n}$ with $t = \frac{y}{x}$. This polynomial equation has finitely many roots, so $t$ is constant, $y = tx$ and $\frac{dy}{dx} = t = \frac{y}{x}$. For $m = 2$, $n = 3$, the root $t \approx -2.8906$ is verified by the following code.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q11.py}@*)
-\end{lstlisting}
 
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q15.py}@*)
+\end{lstlisting}
+%================================ Question 15 end ==================================
+
+%================================ Question 16 begin ================================
 \item
 If $y = e^{a\cos^{-1}x}$, $-1\le x\le1$, show that $\brak{1-x^2}\frac{d^2y}{dx^2} - x\frac{dy}{dx} - a^2y = 0$.
 
-\smallskip
+\medskip
 \solution For $-1<x<1$, from \eqref{eq:EE26BTECH11205-dacos},
 \begin{align}
 	\frac{dy}{dx} = -\frac{a\,y}{\sqrt{1-x^2}} \implies \sqrt{1-x^2}\,\frac{dy}{dx} = -a\,y
@@ -280,10 +373,19 @@ Multiplying by $\sqrt{1-x^2}$ and substituting $\sqrt{1-x^2}\frac{dy}{dx} = -ay$
 	&= a^2y
 \end{align}
 yielding the required result. (The endpoints $x=\pm1$ follow by continuity.)
-\par\medskip\centerline{OR}\smallskip
+
+\medskip
+The following code verifies the solution
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q16.py}@*)
+\end{lstlisting}
+%================================ Question 16 end ==================================
+
+%================================ Question 17 begin ================================
+\item
 If $x\sqrt{1+y} + y\sqrt{1+x} = 0$, $-1<x<1$, $x \neq y$, prove that $\frac{dy}{dx} = -\frac{1}{\brak{1+x}^2}$.
 
-\smallskip
+\medskip
 \solution Writing $x\sqrt{1+y} = -y\sqrt{1+x}$ and squaring,
 \begin{align}
 	x^2\brak{1+y} = y^2\brak{1+x} \implies \brak{x-y}\brak{x+y+xy} = 0
@@ -298,16 +400,18 @@ Since $x \neq y$, $x + y + xy = 0$, so
 \end{align}
 This $y$ satisfies the given equation because $1 + y = \frac{1}{1+x}$ gives $x\sqrt{1+y} = \frac{x}{\sqrt{1+x}} = -y\sqrt{1+x}$.
 
-\smallskip
-The following code verifies both parts
+\medskip
+The following code verifies the solution
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q12.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q17.py}@*)
 \end{lstlisting}
+%================================ Question 17 end ==================================
 
+%================================ Question 18 begin ================================
 \item
 Show that $y = \log\brak{1+x} - \frac{2x}{2+x}$, $x>-1$, is an increasing function of $x$ throughout its domain.
 
-\smallskip
+\medskip
 \solution \begin{align}
 	\frac{dy}{dx} &= \frac{1}{1+x} - \frac{2\brak{2+x}-2x}{\brak{2+x}^2} \notag
 	\\
@@ -316,65 +420,99 @@ Show that $y = \log\brak{1+x} - \frac{2x}{2+x}$, $x>-1$, is an increasing functi
 	&= \frac{x^2}{\brak{1+x}\brak{2+x}^2}
 \end{align}
 For $x>-1$ the denominator is positive, so $\frac{dy}{dx} \ge 0$, with equality only at $x=0$. From \eqref{eq:EE26BTECH11205-monotone}, $y$ is strictly increasing on $\brak{-1,\infty}$.
-\par\medskip\centerline{OR}\smallskip
+
+\medskip
+The following code verifies the solution and generates \figref{fig:EE26BTECH11205-18}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q18.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\linewidth]{figs/Q18.pdf}
+    \caption{$y = \ln\brak{1+x} - \frac{2x}{2+x}$ is increasing}
+    \label{fig:EE26BTECH11205-18}
+\end{figure}
+%================================ Question 18 end ==================================
+
+%================================ Question 19 begin ================================
+\item
 Find the equation of the normal at the point $\brak{am^2,am^3}$ for the curve $ay^2 = x^3$.
 
-\smallskip
+\medskip
 \solution Let $F(x,y) = x^3 - ay^2$. The point lies on the curve since $a\brak{am^3}^2 = \brak{am^2}^3$. From \eqref{eq:EE26BTECH11205-grad-normal},
 \begin{align}
 	\nabla F = \myvec{3x^2 \\ -2ay} \implies \nabla F\brak{am^2,am^3} = a^2m^3\myvec{3m \\ -2}, \quad m \neq 0
 \end{align}
 The normal line through $\brak{am^2,am^3}$ with direction $\myvec{3m \\ -2}$ is
 \begin{align}
-	-2\brak{x - am^2} = 3m\brak{y - am^3} \implies 2x + 3my - am^2\brak{2+3m^2} = 0
+	-2\brak{x - am^2} &= 3m\brak{y - am^3} \notag
+	\\
+	\implies 2x + 3my - am^2\brak{2+3m^2} &= 0
 \end{align}
 which agrees with the slope $-\frac{2}{3m}$ of the normal, since the tangent slope is $\frac{3m}{2}$.
 
-\smallskip
-The following code verifies both parts and generates \figref{fig:EE26BTECH11205-13}.
+\medskip
+The following code verifies the solution and generates \figref{fig:EE26BTECH11205-19}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q13.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q19.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\linewidth]{figs/Q13.pdf}
-    \caption{$y = \ln\brak{1+x} - \frac{2x}{2+x}$ is increasing}
-    \label{fig:EE26BTECH11205-13}
+    \includegraphics[width=0.60\linewidth]{figs/Q19.pdf}
+    \caption{The curve $ay^2 = x^3$ ($a = 1$, $m = 1$) with its tangent and normal at $\brak{am^2,am^3}$}
+    \label{fig:EE26BTECH11205-19}
 \end{figure}
+%================================ Question 19 end ==================================
 
+%================================ Question 20 begin ================================
 \item
 Evaluate $\int x^2\tan^{-1}x\,dx$.
 
-\smallskip
+\medskip
 \solution Using \eqref{eq:EE26BTECH11205-ibp} with $u = \tan^{-1}x$, $dv = x^2\,dx$,
 \begin{align}
 	\int x^2\tan^{-1}x\,dx &= \frac{x^3}{3}\tan^{-1}x - \frac{1}{3}\int\frac{x^3}{1+x^2}\,dx
 	\\
-	\frac{x^3}{1+x^2} &= x - \frac{x}{1+x^2} \implies \int\frac{x^3}{1+x^2}\,dx = \frac{x^2}{2} - \frac{1}{2}\ln\brak{1+x^2}
+	\frac{x^3}{1+x^2} &= x - \frac{x}{1+x^2} \notag
+	\\
+	\implies \int\frac{x^3}{1+x^2}\,dx &= \frac{x^2}{2} - \frac{1}{2}\ln\brak{1+x^2}
 \end{align}
 Therefore
 \begin{align}
 	\int x^2\tan^{-1}x\,dx = \frac{x^3}{3}\tan^{-1}x - \frac{x^2}{6} + \frac{1}{6}\ln\brak{1+x^2} + c
 \end{align}
-\par\medskip\centerline{OR}\smallskip
+
+\medskip
+The following code verifies the result by differentiation
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q20.py}@*)
+\end{lstlisting}
+%================================ Question 20 end ==================================
+
+%================================ Question 21 begin ================================
+\item
 Evaluate $\int\frac{3x-1}{\brak{x+2}^2}\,dx$.
 
-\smallskip
+\medskip
 \solution Since $3x - 1 = 3\brak{x+2} - 7$,
 \begin{align}
 	\int\frac{3x-1}{\brak{x+2}^2}\,dx &= \int\brak{\frac{3}{x+2} - \frac{7}{\brak{x+2}^2}}dx \notag
 	\\
 	&= 3\ln\abs{x+2} + \frac{7}{x+2} + c
 \end{align}
-The following code verifies both results by differentiation
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q14.py}@*)
-\end{lstlisting}
 
+\medskip
+The following code verifies the result by differentiation
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q21.py}@*)
+\end{lstlisting}
+%================================ Question 21 end ==================================
+
+%================================ Question 22 begin ================================
 \item
 Solve the differential equation $\sbrak{\frac{e^{-2\sqrt{x}}}{\sqrt{x}} - \frac{y}{\sqrt{x}}}\frac{dx}{dy} = 1$, $x \neq 0$.
 
-\smallskip
+\medskip
 \solution The equation requires $x>0$ and $\frac{dx}{dy} \neq 0$, so it can be written as
 \begin{align}
 	\frac{dy}{dx} + \frac{1}{\sqrt{x}}y = \frac{e^{-2\sqrt{x}}}{\sqrt{x}}
@@ -387,15 +525,19 @@ Hence
 \begin{align}
 	y = \brak{2\sqrt{x} + C}e^{-2\sqrt{x}}
 \end{align}
+
+\medskip
 The following code verifies the solution
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q15.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q22.py}@*)
 \end{lstlisting}
+%================================ Question 22 end ==================================
 
+%================================ Question 23 begin ================================
 \item
 Solve the differential equation $3e^x\tan y\,dx + \brak{2-e^x}\sec^2y\,dy = 0$, given that $y = \frac{\pi}{4}$ when $x = 0$.
 
-\smallskip
+\medskip
 \solution Separating the variables,
 \begin{align}
 	\frac{3e^x}{2-e^x}dx + \frac{\sec^2y}{\tan y}dy = 0
@@ -410,16 +552,24 @@ At $x = 0$, $y = \frac{\pi}{4}$: $1 = C\brak{1}^3$, so $C = 1$. Hence
 \end{align}
 which is valid for $e^x < 2$, the interval containing $x = 0$.
 
-\smallskip
-The following code compares a numerical solution of the differential equation with this result
+\medskip
+The following code compares a numerical solution of the differential equation with this result and generates \figref{fig:EE26BTECH11205-23}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q16.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q23.py}@*)
 \end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\linewidth]{figs/Q23.pdf}
+    \caption{The solution $y = \tan^{-1}\brak{\brak{2-e^x}^3}$ through $\brak{0,\frac{\pi}{4}}$}
+    \label{fig:EE26BTECH11205-23}
+\end{figure}
+%================================ Question 23 end ==================================
 
+%================================ Question 24 begin ================================
 \item
 If $\vec{\alpha} = 3\hat{\imath} + 4\hat{\jmath} + 5\hat{k}$ and $\vec{\beta} = 2\hat{\imath} + \hat{\jmath} - 4\hat{k}$, then express $\vec{\beta}$ in the form $\vec{\beta} = \vec{\beta}_1 + \vec{\beta}_2$, where $\vec{\beta}_1$ is parallel to $\vec{\alpha}$ and $\vec{\beta}_2$ is perpendicular to $\vec{\alpha}$.
 
-\smallskip
+\medskip
 \solution Here
 \begin{align}
 	\vec{\alpha} = \myvec{3 \\ 4 \\ 5},\quad \vec{\beta} = \myvec{2 \\ 1 \\ -4}
@@ -446,15 +596,19 @@ Check: $\vec{\alpha}^{\top}\vec{\beta}_2 = \frac{39 + 36 - 75}{5} = 0$. Hence
 \begin{align}
 	\vec{\beta} = \brak{-\frac{3}{5}\hat{\imath} - \frac{4}{5}\hat{\jmath} - \hat{k}} + \brak{\frac{13}{5}\hat{\imath} + \frac{9}{5}\hat{\jmath} - 3\hat{k}}
 \end{align}
+
+\medskip
 The following code verifies the solution
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q17.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q24.py}@*)
 \end{lstlisting}
+%================================ Question 24 end ==================================
 
+%================================ Question 25 begin ================================
 \item
 Find the vector and Cartesian equations of the line passing through the point $\vec{P} = \brak{1,2,3}$ and parallel to the planes $\vec{r}\cdot\brak{\hat{\imath} - \hat{\jmath} + 2\hat{k}} = 5$ and $\vec{r}\cdot\brak{3\hat{\imath} + \hat{\jmath} + \hat{k}} = 6$.
 
-\smallskip
+\medskip
 \solution The normal vectors are
 \begin{align}
 	\vec{n}_1 = \myvec{1 \\ -1 \\ 2}, \quad \vec{n}_2 = \myvec{3 \\ 1 \\ 1}
@@ -477,11 +631,13 @@ and the Cartesian equation is
 \begin{align}
 	\frac{x-1}{-3} = \frac{y-2}{5} = \frac{z-3}{4}
 \end{align}
+%================================ Question 25 end ==================================
 
+%================================ Question 26 begin ================================
 \item
 A pair of dice is thrown 4 times. If getting a doublet is considered a success, find the probability distribution of the number of successes and hence find its mean.
 
-\smallskip
+\medskip
 \solution A doublet occurs in $6$ of the $36$ outcomes, so $p = \frac{1}{6}$ and $q = \frac{5}{6}$. The number of successes $X$ in $n = 4$ independent throws follows \eqref{eq:EE26BTECH11205-binom-pmf},
 \begin{align}
 	\pr{X=k} = \comb{4}{k}\brak{\frac{1}{6}}^k\brak{\frac{5}{6}}^{4-k}
@@ -501,22 +657,25 @@ The probabilities add up to $\frac{1296}{1296} = 1$. From \eqref{eq:EE26BTECH112
 	\\
 	&= \frac{2}{3}
 \end{align}
-The following code verifies the solution (including a simulation) and generates \figref{fig:EE26BTECH11205-19}.
+
+\medskip
+The following code verifies the solution (including a simulation) and generates \figref{fig:EE26BTECH11205-26}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q19.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q26.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\linewidth]{figs/Q19.pdf}
+    \includegraphics[width=0.55\linewidth]{figs/Q26.pdf}
     \caption{Probability distribution of the number of doublets}
-    \label{fig:EE26BTECH11205-19}
+    \label{fig:EE26BTECH11205-26}
 \end{figure}
+%================================ Question 26 end ==================================
 
-%--------------------------------------------------------------------- Section C
+%================================ Question 27 begin ================================
 \item
 Using matrices, solve the following system of equations: $x - y + z = 4$, $2x + y - 3z = 0$, $x + y + z = 2$.
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-linsys},
 \begin{align}
 	\myvec{1 & -1 & 1 \\ 2 & 1 & -3 \\ 1 & 1 & 1}\myvec{x \\ y \\ z} = \myvec{4 \\ 0 \\ 2}
@@ -535,10 +694,19 @@ The last row gives $y = -1$. Then $3\brak{-1} - 5z = -8 \implies z = 1$ and $x +
 \begin{align}
 	\myvec{x \\ y \\ z} = \myvec{2 \\ -1 \\ 1}
 \end{align}
-\par\medskip\centerline{OR}\smallskip
+
+\medskip
+The following code verifies the solution
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q27.py}@*)
+\end{lstlisting}
+%================================ Question 27 end ==================================
+
+%================================ Question 28 begin ================================
+\item
 If $\vec{A}^{-1} = \myvec{3 & -1 & 1 \\ -15 & 6 & -5 \\ 5 & -2 & 2}$ and $\vec{B} = \myvec{1 & 2 & -2 \\ -1 & 3 & 0 \\ 0 & -2 & 1}$, find $\brak{\vec{A}\vec{B}}^{-1}$.
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-inv-prod}, $\brak{\vec{A}\vec{B}}^{-1} = \vec{B}^{-1}\vec{A}^{-1}$. Here $\mydet{\vec{B}} = 1\brak{3} - 2\brak{-1} - 2\brak{2} = 1$ and, from \eqref{eq:EE26BTECH11205-adjugate}, the matrix of cofactors is
 \begin{align}
 	\vec{C} &= \myvec{3 & 1 & 2 \\ 2 & 1 & 2 \\ 6 & 2 & 5} \notag
@@ -553,15 +721,19 @@ Therefore
 	\\
 	&= \myvec{9 & -3 & 5 \\ -2 & 1 & 0 \\ 1 & 0 & 2}
 \end{align}
-The following code verifies both parts
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q20.py}@*)
-\end{lstlisting}
 
+\medskip
+The following code verifies the solution
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q28.py}@*)
+\end{lstlisting}
+%================================ Question 28 end ==================================
+
+%================================ Question 29 begin ================================
 \item
 Show that the altitude of the right circular cone of maximum volume that can be inscribed in a sphere of radius $R$ is $\frac{4R}{3}$.
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-cone-vol},
 \begin{align}
 	V\brak{h} = \frac{\pi}{3}\brak{2Rh^2 - h^3},\quad 0<h<2R
@@ -576,22 +748,24 @@ Since $h>0$, $V^{\prime}\brak{h} = 0$ gives $h = \frac{4R}{3}$ as the only criti
 \end{align}
 From \eqref{eq:EE26BTECH11205-second-deriv}, $V$ is maximum at $h = \frac{4R}{3}$. Since $V\to0$ as $h\to0$ or $h\to2R$, this is the global maximum, with $V_{\max} = \frac{32\pi R^3}{81}$.
 
-\smallskip
-The following code verifies the solution and generates \figref{fig:EE26BTECH11205-21}.
+\medskip
+The following code verifies the solution and generates \figref{fig:EE26BTECH11205-29}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q21.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q29.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\linewidth]{figs/Q21.pdf}
+    \includegraphics[width=0.55\linewidth]{figs/Q29.pdf}
     \caption{Volume of the inscribed cone versus its height ($R=1$)}
-    \label{fig:EE26BTECH11205-21}
+    \label{fig:EE26BTECH11205-29}
 \end{figure}
+%================================ Question 29 end ==================================
 
+%================================ Question 30 begin ================================
 \item
 Find the area of the region in the first quadrant enclosed by the $x$-axis, the line $x = \sqrt{3}\,y$ and the circle $x^2 + y^2 = 4$.
 
-\smallskip
+\medskip
 \solution The line and the circle meet where $3y^2 + y^2 = 4$, that is, at $\brak{\sqrt{3},1}$. The region is bounded by the line for $0\le x\le\sqrt{3}$ and by the circle for $\sqrt{3}\le x\le2$. From \eqref{eq:EE26BTECH11205-area-int},
 \begin{align}
 	A &= \int_{0}^{\sqrt{3}}\frac{x}{\sqrt{3}}\,dx + \int_{\sqrt{3}}^{2}\sqrt{4-x^2}\,dx
@@ -604,22 +778,24 @@ Find the area of the region in the first quadrant enclosed by the $x$-axis, the 
 \end{align}
 This agrees with the sector of radius $2$ and angle $\frac{\pi}{6}$: $\frac{1}{2}\brak{4}\frac{\pi}{6} = \frac{\pi}{3}$.
 
-\smallskip
-The following code verifies the solution and generates \figref{fig:EE26BTECH11205-22}.
+\medskip
+The following code verifies the solution and generates \figref{fig:EE26BTECH11205-30}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q22.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q30.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\linewidth]{figs/Q22.pdf}
+    \includegraphics[width=0.55\linewidth]{figs/Q30.pdf}
     \caption{Region bounded by the $x$-axis, $x=\sqrt{3}y$ and $x^2+y^2=4$}
-    \label{fig:EE26BTECH11205-22}
+    \label{fig:EE26BTECH11205-30}
 \end{figure}
+%================================ Question 30 end ==================================
 
+%================================ Question 31 begin ================================
 \item
 Evaluate $\int_{1}^{3}\brak{x^2+x}\,dx$ as a limit of a sum.
 
-\smallskip
+\medskip
 \solution Here $a = 1$, $b = 3$, $h = \frac{2}{n}$ and $f\brak{1+ih} = \brak{1+ih}^2 + \brak{1+ih} = 2 + 3ih + i^2h^2$. From \eqref{eq:EE26BTECH11205-riemann} and \eqref{eq:EE26BTECH11205-sums},
 \begin{align}
 	S_n &= h\sbrak{2n + 3h\frac{n\brak{n+1}}{2} + h^2\frac{n\brak{n+1}\brak{2n+1}}{6}}
@@ -634,29 +810,49 @@ Hence
 	\\
 	&= \frac{38}{3}
 \end{align}
-\par\medskip\centerline{OR}\smallskip
+
+\medskip
+The following code verifies the solution and generates \figref{fig:EE26BTECH11205-31}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q31.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\linewidth]{figs/Q31.pdf}
+    \caption{Right-end rectangles for $\int_{1}^{3}\brak{x^2+x}\,dx$ with $n = 8$}
+    \label{fig:EE26BTECH11205-31}
+\end{figure}
+%================================ Question 31 end ==================================
+
+%================================ Question 32 begin ================================
+\item
 Evaluate $\int_{0}^{\pi/4}\frac{\cos^2x}{\cos^2x + 4\sin^2x}\,dx$.
 
-\smallskip
+\medskip
 \solution From \eqref{eq:EE26BTECH11205-tan-sub} with $t = \tan x$ and $k = 4$,
 \begin{align}
-	\int_{0}^{\pi/4}\frac{\cos^2x}{\cos^2x + 4\sin^2x}\,dx = \int_{0}^{1}\frac{dt}{\brak{1+t^2}\brak{1+4t^2}}
+	\int_{0}^{\pi/4}\frac{\cos^2x}{\cos^2x + 4\sin^2x}\,dx &= \int_{0}^{1}\frac{dt}{\brak{1+t^2}\brak{1+4t^2}}
 \end{align}
 Using partial fractions, $\frac{1}{\brak{1+t^2}\brak{1+4t^2}} = \frac{-1/3}{1+t^2} + \frac{4/3}{1+4t^2}$,
 \begin{align}
-	\int_{0}^{1}\brak{\frac{-1/3}{1+t^2} + \frac{4/3}{1+4t^2}}dt = \sbrak{-\frac{1}{3}\tan^{-1}t + \frac{2}{3}\tan^{-1}\brak{2t}}_{0}^{1}
+	\int_{0}^{1}\brak{\frac{-1/3}{1+t^2} + \frac{4/3}{1+4t^2}}dt &= \sbrak{-\frac{1}{3}\tan^{-1}t + \frac{2}{3}\tan^{-1}\brak{2t}}_{0}^{1} \notag
 	\\
-	= \frac{2}{3}\tan^{-1}2 - \frac{\pi}{12}
+	&= \frac{2}{3}\tan^{-1}2 - \frac{\pi}{12}
 \end{align}
-which is approximately $0.4763$. The following code verifies both parts
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q23.py}@*)
-\end{lstlisting}
+which is approximately $0.4763$.
 
+\medskip
+The following code verifies the result
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q32.py}@*)
+\end{lstlisting}
+%================================ Question 32 end ==================================
+
+%================================ Question 33 begin ================================
 \item
 Find the vector equation of the plane passing through the points $\brak{2,1,-1}$ and $\brak{-1,3,4}$ and perpendicular to the plane $x - 2y + 4z = 10$. Also show that the plane thus obtained contains the line $\vec{r} = -\hat{\imath} + 3\hat{\jmath} + 4\hat{k} + \lambda\brak{3\hat{\imath} - 2\hat{\jmath} - 5\hat{k}}$.
 
-\smallskip
+\medskip
 \solution Let
 \begin{align}
 	\vec{P}_1 = \myvec{2 \\ 1 \\ -1}, \quad \vec{P}_2 = \myvec{-1 \\ 3 \\ 4}, \quad \vec{n}_0 = \myvec{1 \\ -2 \\ 4}
@@ -691,21 +887,23 @@ Check: $\vec{n}^{\top}\vec{P}_2 = -18 + 51 + 16 = 49$. For the given line,
 \end{align}
 Hence the line passes through a point of the plane and is parallel to it, so the plane contains the line.
 
-\smallskip
+\medskip
 The following code verifies the solution
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q24.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q33.py}@*)
 \end{lstlisting}
+%================================ Question 33 end ==================================
 
+%================================ Question 34 begin ================================
 \item
 A company produces soft drinks, and a contract requires that a minimum of $80$ units of chemical A and $60$ units of chemical B go into each bottle. The chemicals are available in prepared mix packets from two suppliers. A packet from supplier S has $4$ units of A and $2$ units of B and costs \rupee~$10$. A packet from supplier T has $1$ unit of A and $1$ unit of B and costs \rupee~$4$. How many packets from S and T should the company purchase to honour the contract and yet minimize the cost? Make an LPP and solve it graphically.
 
-\smallskip
+\medskip
 \solution Let $\vec{x} = \myvec{x \\ y}$, where $x$ and $y$ are the numbers of packets from S and T. The LPP is
 \begin{align}
 	\min_{\vec{x}}\; Z = \myvec{10 & 4}\vec{x} \quad \text{s.t.} \quad \myvec{4 & 1 \\ 2 & 1}\vec{x} \ge \myvec{80 \\ 60},\quad \vec{x} \ge \vec{0}
 \end{align}
-The lines $4x + y = 80$ and $2x + y = 60$ meet at $\brak{10,40}$. The feasible region in \figref{fig:EE26BTECH11205-25} is unbounded, with corner points
+The lines $4x + y = 80$ and $2x + y = 60$ meet at $\brak{10,40}$. The feasible region in \figref{fig:EE26BTECH11205-34} is unbounded, with corner points
 \begin{center}
 \renewcommand{\arraystretch}{1.6}
 \begin{tabular}{c|c|c|c}
@@ -723,25 +921,29 @@ Since $Z \ge 0$ on the feasible region, from \eqref{eq:EE26BTECH11205-lpp} the m
 \end{align}
 for every feasible point, with equality at $\brak{10,40}$. Hence the company should buy $10$ packets from S and $40$ packets from T, at the minimum cost of \rupee~$260$.
 
-\smallskip
-The following code solves the LPP and generates \figref{fig:EE26BTECH11205-25}.
+\medskip
+The following code solves the LPP and generates \figref{fig:EE26BTECH11205-34}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q25.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/Q34.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\linewidth]{figs/Q25.pdf}
+    \includegraphics[width=0.60\linewidth]{figs/Q34.pdf}
     \caption{Feasible region and the optimal corner point $\brak{10,40}$}
-    \label{fig:EE26BTECH11205-25}
+    \label{fig:EE26BTECH11205-34}
 \end{figure}
+%================================ Question 34 end ==================================
 
+%================================ Question 35 begin ================================
 \item
 In a certain college, $4\%$ of boys and $1\%$ of girls are taller than $1.75$ metres. Furthermore, $60\%$ of the students in the college are girls. A student is selected at random from the college and is found to be taller than $1.75$ metres. Find the probability that the selected student is a girl.
 
-\smallskip
+\medskip
 \solution Let $G$: the student is a girl, $B$: the student is a boy, and $T$: the student is taller than $1.75$ m. Then
 \begin{align}
-	\pr{G} = 0.6,\quad \pr{B} = 0.4,\quad \pr{T|G} = 0.01,\quad \pr{T|B} = 0.04
+	\pr{G} = 0.6,\quad \pr{B} = 0.4
+	\\
+	\pr{T|G} = 0.01,\quad \pr{T|B} = 0.04
 \end{align}
 From \eqref{eq:EE26BTECH11205-bayes},
 \begin{align}
@@ -753,4 +955,6 @@ From \eqref{eq:EE26BTECH11205-bayes},
 	\\
 	&= \frac{3}{11}
 \end{align}
+%================================ Question 35 end ==================================
+
 \end{enumerate}

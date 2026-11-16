@@ -1,10 +1,11 @@
 #Code by EE26BTECH11205
 #CBSE 2012 Mathematics (65/2/1)
-#Q3: x(2,3)^T + y(-1,1)^T = (10,5)^T
+#Q3: A^2 = A  =>  (I+A)^2 - 3A = I
 import numpy as np
-A = np.array([[2, -1], [3, 1]], dtype=float)
-b = np.array([[10], [5]], dtype=float)
-sol = np.linalg.solve(A, b)
-print("x =", sol[0, 0], " y =", sol[1, 0])
-Ab = np.hstack([A, b])
-print("rank A =", np.linalg.matrix_rank(A), " rank [A|b] =", np.linalg.matrix_rank(Ab), " unknowns = 2")
+#Random idempotent matrix: orthogonal projector P = M (M^T M)^{-1} M^T
+rng = np.random.default_rng(1)
+M = rng.standard_normal((4, 2))
+A = M @ np.linalg.inv(M.T @ M) @ M.T
+I = np.eye(4)
+print("A^2 = A :", np.allclose(A @ A, A))
+print("(I+A)^2 - 3A = I :", np.allclose((I + A) @ (I + A) - 3*A, I))
